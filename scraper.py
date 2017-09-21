@@ -46,14 +46,6 @@ class Scraper():
                     col_names.append(th.get_text())
 
 
-
-
-
-
-
-
-
-
 base_url = "http://www.footballdb.com/fantasy-football/index.html?"
 # rules = 1 for standard, 2 for ppr
 rules = "2"
