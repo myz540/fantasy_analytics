@@ -6,9 +6,11 @@ import os
 import lxml
 import numpy as np
 
+__author__ = "Mike Zhong"
 
-#     'http://www.footballdb.com/fantasy-football/index.html?pos=QB%2CRB%2CWR%2CTE&yr=2016&wk=1&rules=1'
+# Part 2)
 
+# 'http://www.footballdb.com/fantasy-football/index.html?pos=QB%2CRB%2CWR%2CTE&yr=2016&wk=1&rules=2'
 class Scraper:
 
     def __init__(self, base_url):
@@ -62,6 +64,11 @@ class Scraper:
             raise BaseException('Response returned status code:', response.status_code)
 
     def parse_html_table(self, week):
+        """
+        heavily lifting method, see the 'bs4_and_requests.ipynb' notebook for the development of this method
+        :param week: the week corresponding to the table
+        :return: None
+        """
         all_tables = self.soup.find_all('table')
         table = all_tables[0]
         trs = table.find_all('tr')
@@ -107,18 +114,27 @@ class Scraper:
         self.dfs[week] = my_table
 
     def concat_tables(self):
+        """
+        Concatenates all the tables in the self.df attribute vertically. Saves the resulting dataframe to disk.
+        :return: None
+        """
         dfs = [df for df in self.dfs.values()]
         print(type(dfs))
         new_df = pd.concat(dfs, axis=0, ignore_index=True)
         new_df.to_csv(self.wd + '/data/merged.csv', index=False)
 
     def write_tables(self):
+        """
+        Helper function to write each individual data frame to disk. Not necessary but helpful for debugging
+        :return: None
+        """
         for i, table in self.dfs.items():
             table.to_csv(self.wd + '/data/week' + str(i) + '.csv', index=False)
 
 
 if __name__ == "__main__":
 
+    # Driver
     base_url = 'http://www.footballdb.com/fantasy-football/index.html?pos=QB%2CRB%2CWR%2CTE&yr=2016'
     rules = '2'  # 2=PPR, 1=standard
 
@@ -138,12 +154,3 @@ if __name__ == "__main__":
     scraper.concat_tables()
 
     # scraper.write_tables()
-
-
-
-
-
-
-
-
-
