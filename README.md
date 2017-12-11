@@ -16,7 +16,7 @@ See 'fill_player_pos.ipynb'
 #### Part 4) Analysis Performed per Project Requirements
 The following analysis was performe: Examine two categorical variables and visualize distributions, examine one continuous variable and visualize distributions, then stratify the data by one of the categorical variables and examine the distribution of the continuous variable. Next, explore simple random sampling and stratified sampling methods, illustrate the central limit theorem. Compare means and standard deviations with the population. Lastly, use the boot library to generate bootstrap distributions of resampled means and medians, computing 90% and 80% confidence intervals for both statistics. 
 See 'R_Analysis1.ipynb'
-#### Part 5) Additional Analysis Performed But Not Required By Project, this work is ongoing...
-See 'R_Analysis2.ipynb'
+#### Part 5) Additional Analysis Performed But Not Required By Project, this work is ongoing... Currently has some plotly charts using Python
+See 'plotly_playground.ipynb'
 
 
